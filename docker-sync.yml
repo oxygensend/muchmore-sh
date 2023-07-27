@@ -1,0 +1,9 @@
+version: "2"
+syncs:
+  mm-sh-app-sync:
+    src: './'
+    sync_host_port: 10877
+    sync_userid: '33'
+    sync_args: '-prefer newer -copyonconflict'
+    sync_excludes: ["var",  ".idea", ".git"]
+    notify_terminal: true

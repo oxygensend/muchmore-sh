@@ -1,0 +1,4 @@
+[mysqld]
+
+max_allowed_packet = 100M
+default_time_zone=Europe/Warsaw

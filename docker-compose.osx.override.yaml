@@ -1,0 +1,24 @@
+version: '3.9'
+services:
+  php:
+    build:
+      context: docker/php-fpm/local
+    volumes:
+      - mm-sh-app-sync:/var/www/html:nocopy
+      - ./docker/php-fpm/local/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./docker/php-fpm/local/conf.d/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  mysql:
+    volumes:
+      - ./docker/mysql/local/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
+
+  nginx:
+    build:
+      context: docker/nginx/local
+    volumes:
+      - mm-sh-app-sync:/var/www/html:nocopy
+volumes:
+  mm-sh-app-sync:
+    external: true
