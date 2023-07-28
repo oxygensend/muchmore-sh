@@ -12,7 +12,7 @@
 
 .data
 .logs
-.env
+.env.dist
 .env.local
 docker/.env
 .docker-sync
