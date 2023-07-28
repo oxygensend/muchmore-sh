@@ -1,5 +1,15 @@
-controllers:
+Employee:
     resource:
-        path: ../src/Controller/
-        namespace: App\Controller
+        path: ../src/Employee/Application/Controller/
+        namespace: App\Employee\Application\Controller
     type: attribute
+
+
+api_access_token:
+    path: /api/access_token
+    methods: ['POST']
+
+api_refresh_token:
+    path: /api/refresh_token
+    methods: ['POST']
+    controller: gesdinet.jwtrefreshtoken::refresh
