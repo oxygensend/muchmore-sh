@@ -12,4 +12,8 @@ api_access_token:
 api_refresh_token:
     path: /api/refresh_token
     methods: ['POST']
-    controller: gesdinet.jwtrefreshtoken::refresh
+
+app.swagger_ui:
+    path: /api/doc
+    methods: GET
+    defaults: { _controller: nelmio_api_doc.controller.swagger_ui }
