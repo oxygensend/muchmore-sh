@@ -7,8 +7,6 @@ RUN echo 'alias sf="php bin/console"' >> ~/.bashrc
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini
 COPY php.override.ini $PHP_INI_DIR/conf.d/99-overrides.ini
 
-COPY www.conf $PHP_INI_DIR/conf.d/99-overrides.ini
-
 
 # Set timezone
 RUN ln -snf /usr/share/zoneinfo/${TIMEZONE} /etc/localtime && echo ${TIMEZONE} > /etc/timezone
