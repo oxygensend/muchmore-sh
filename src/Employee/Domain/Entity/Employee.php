@@ -39,34 +39,31 @@ class Employee implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Sex $sex = null;
+    private ?Gender $gender = null;
 
-    /**
-     * @param string|null $email
-     * @param array $roles
-     * @param string|null $password
-     * @param string|null $name
-     * @param string|null $surname
-     * @param string|null $pesel
-     * @param \DateTimeImmutable|null $birthDate
-     * @param Sex|null $sex
-     */
+
     public function __construct(
-        ?string $email,
-        ?string $name,
-        ?string $surname,
-        ?string $pesel,
+        ?string             $email,
+        ?string             $name,
+        ?string             $surname,
+        ?string             $pesel,
         ?\DateTimeImmutable $birthDate,
-        ?Sex $sex
-    ) {
+        ?Gender             $gender
+    )
+    {
         $this->email = $email;
         $this->name = $name;
         $this->surname = $surname;
         $this->pesel = $pesel;
         $this->birthDate = $birthDate;
-        $this->sex = $sex;
+        $this->gender = $gender;
     }
 
+
+    public function setId(int $i): void
+    {
+        $this->id = $i;
+    }
 
     public function getId(): ?int
     {
@@ -172,14 +169,14 @@ class Employee implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getSex(): ?Sex
+    public function getGender(): ?Gender
     {
-        return $this->sex;
+        return $this->gender;
     }
 
-    public function setSex(?Sex $sex): static
+    public function setGender(?Gender $gender): static
     {
-        $this->sex = $sex;
+        $this->gender = $gender;
 
         return $this;
     }
