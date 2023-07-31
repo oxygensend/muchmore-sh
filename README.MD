@@ -18,8 +18,6 @@ docker compose -f docker-compose.yaml -f docker-compose.override.yaml --env-file
 
 docker compose -f docker-compose.yaml -f docker-compose.override.yaml --env-file=docker/.env exec php bin/console d:f:l -n
 
-docker compose -f docker-compose.yaml -f docker-compose.override.yaml --env-file=docker/.env exec php bin/console lexik -n
-
 docker compose -f docker-compose.yaml -f docker-compose.override.yaml --env-file=docker/.env exec php bin/console lexik:jwt:generate-keypair --overwrite -n
 
 docker compose -f docker-compose.yaml -f docker-compose.override.yaml --env-file=docker/.env exec php vendor/phpunit/phpunit/phpunit
