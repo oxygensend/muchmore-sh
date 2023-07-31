@@ -1,0 +1,79 @@
+nelmio_api_doc:
+  areas:
+    path_patterns: # an array of regexps (document only routes under /api, except /api/doc)
+      - ^/api(?!/doc$)
+
+  documentation:
+    info:
+      title: Employeeeeeeees
+      description: KKK
+      version: 1.0.0
+    components:
+      securitySchemes:
+        Bearer:
+          type: http
+          scheme: bearer
+          bearerFormat: JWT
+    security:
+      - Bearer: [ ]
+    paths:
+      /api/access_token:
+        post:
+          tags:
+            - Auth
+          summary: Authentication
+          description: Get access token
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      example: test1@test.com
+                    password:
+                      type: string
+                      example: test123
+          responses:
+            200:
+              description: Success
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      accessToken:
+                        type: string
+                      refreshToken:
+                        type: string
+            401:
+              description: Invalid credentails
+      /api/refresh_token:
+        post:
+          tags:
+            - Auth
+          summary: Refresh token
+          description: Get refresh token
+          requestBody:
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    refreshToken:
+                      type: string
+          responses:
+            200:
+              description: Success
+              content:
+                application/json:
+                  schema:
+                    type: object
+                    properties:
+                      accessToken:
+                        type: string
+                      refreshToken:
+                        type: string
+            401:
+              description: Invalid credentials
