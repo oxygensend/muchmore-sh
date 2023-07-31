@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Employee\Infrastructure\DataFixtures;
 
 use App\Employee\Domain\Entity\Employee;
-use App\Employee\Domain\Entity\Sex;
+use App\Employee\Domain\Entity\Gender;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -21,7 +21,7 @@ class EmployeeFixture extends Fixture implements DependentFixtureInterface
 
     public function getDependencies(): array
     {
-        return [SexFixture::class];
+        return [GenderFixture::class];
     }
 
     public function load(ObjectManager $manager): void
@@ -32,8 +32,8 @@ class EmployeeFixture extends Fixture implements DependentFixtureInterface
             $email = "test" . $i . "@test.com";
             $name = "TestName" . $i;
             $surname = "TestSurname" . $i;
-            /** @var Sex $sex */
-            $sex = $this->getReference($i % 2 ? 'sex_male' : 'sex_female');
+            /** @var Gender $sex */
+            $sex = $this->getReference($i % 2 ? 'gender_male' : 'gender_female');
             $employee = new Employee(
                 $email,
                 $name,

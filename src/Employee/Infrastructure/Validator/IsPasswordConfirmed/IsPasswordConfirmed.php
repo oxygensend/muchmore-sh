@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Employee\Infrastructure\Validator\IsPasswordConfirmed;
+
+use Symfony\Component\Validator\Constraint;
+
+
+/**
+ * @Annotation
+ * @Target({"CLASS"})
+ */
+#[\Attribute(\Attribute::TARGET_CLASS | \Attribute::IS_REPEATABLE)]
+class IsPasswordConfirmed extends Constraint
+{
+
+    public string $message = 'The password and confirmation fields are not equal.';
+
+    public function getTargets(): array|string
+    {
+        return self::CLASS_CONSTRAINT;
+    }
+
+}

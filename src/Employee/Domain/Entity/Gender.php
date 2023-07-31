@@ -2,12 +2,13 @@
 
 namespace App\Employee\Domain\Entity;
 
-use App\Employee\Infrastructure\Repository\SexRepository;
+use App\Employee\Domain\Enum\GenderEnum;
+use App\Employee\Infrastructure\Repository\GenderRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: SexRepository::class)]
-#[ORM\Table(name: '`employee_sex`')]
-class Sex
+#[ORM\Entity(repositoryClass: GenderRepository::class)]
+#[ORM\Table(name: '`employee_gender`')]
+class Gender
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -15,9 +16,9 @@ class Sex
     private ?int $id = null;
 
     #[ORM\Column(length: 10)]
-    private ?string $name = null;
+    private GenderEnum $name;
 
-    public function __construct(?string $name)
+    public function __construct(GenderEnum $name)
     {
         $this->name = $name;
     }
@@ -27,15 +28,14 @@ class Sex
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): GenderEnum
     {
         return $this->name;
     }
 
-    public function setName(string $name): static
+    public function setName(GenderEnum $name): void
     {
         $this->name = $name;
-
-        return $this;
     }
+
 }
